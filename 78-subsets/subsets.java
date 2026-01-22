@@ -1,7 +1,8 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> arr = new ArrayList<>();
-        arr.add(new ArrayList<>());
+        ArrayList<Integer> a = new ArrayList<>();
+        arr.add(a);
 
         for (int i : nums) {
             int n = arr.size();
