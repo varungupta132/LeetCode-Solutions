@@ -1,30 +1,22 @@
 class Solution {
     public boolean isTrionic(int[] nums) {
-        if(nums.length < 4) return false;
-        for(int i = 1 ; i < nums.length-2 ; i++){
-            for(int j = i+1 ; j < nums.length-1 ; j++){
-                if( si( 0 , i , nums) && sd(i , j , nums) && si(j , nums.length-1 , nums)){
-                    return true;
-                }
-            }
+        if(nums.length<=3) return false;
+        int i=0;
+        while(i<nums.length-1 && nums[i]<nums[i+1]){
+            i++;
         }
-        return false;
-    }
-    public boolean si(int s , int e, int[] nums){
-        for(int i = s+1 ; i <= e ; i++){
-            if(nums[i-1] >= nums[i]){
-                return false;
-            }
+        if(i==0) return false;
+        int mid=i;
+        while(i<nums.length-1 && nums[i]>nums[i+1]){
+            i++;
         }
-        return true;
-    }
-    public boolean sd(int s , int e, int[] nums){
-        for(int i = s+1 ; i <= e ; i++){
-            if(nums[i-1] <= nums[i]){
-                return false;
-            }
+        if(i==mid) return false;
+        int mid2=i;
+        while(i<nums.length-1 && nums[i]<nums[i+1]){
+            i++;
         }
-        return true;
+        if(mid2==i) return false;
+        return i==nums.length-1;
+        
     }
-    
 }
