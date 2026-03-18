@@ -1,36 +1,26 @@
-import java.util.Arrays;
-
 class Solution {
     public boolean findRotation(int[][] mat, int[][] target) {
-        for(int k = 0; k < 4; k++){
-            if(Arrays.deepEquals(mat, target)) return true;
-            rotate(mat); // rotate in-place
-        }
+        if (Arrays.deepEquals(mat, target)) return true;
+
+        int[][] r1 = tran(mat);
+        if (Arrays.deepEquals(r1, target)) return true;
+
+        int[][] r2 = tran(r1);
+        if (Arrays.deepEquals(r2, target)) return true;
+
+        int[][] r3 = tran(r2);
+        if (Arrays.deepEquals(r3, target)) return true;
+
         return false;
     }
-
-    public void rotate(int[][] matrix){
-        int n = matrix.length;
-
-        // transpose
-        for(int i = 0; i < n; i++){
-            for(int j = i; j < n; j++){
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+    public int[][] tran(int[][] matrix){
+        int[][] ans = new int[matrix.length][matrix[0].length];
+        for(int i = 0; i < matrix.length ; i++){
+            for(int j = 0 ; j < matrix[0].length ; j++){
+                int val = matrix[i][j];
+                ans[j][matrix.length -1 -i] = val;
             }
         }
-
-        // reverse rows
-        for(int i = 0; i < n; i++){
-            int left = 0, right = n - 1;
-            while(left < right){
-                int temp = matrix[i][left];
-                matrix[i][left] = matrix[i][right];
-                matrix[i][right] = temp;
-                left++;
-                right--;
-            }
-        }
+        return ans;
     }
 }
