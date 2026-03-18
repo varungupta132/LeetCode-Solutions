@@ -1,17 +1,32 @@
 class Solution {
     public int[] minDistinctFreqPair(int[] nums) {
-        Arrays.sort(nums);
         int[] freq = new int[101];
+
+        // count frequency
         for(int i : nums){
             freq[i]++;
         }
-        for(int i = 0 ; i< nums.length ;i++){
-            for(int j = 0 ; j < nums.length ; j++){
-                if(nums[i] < nums[j] && freq[nums[i]] != freq[nums[j]]){
-                    return new int[]{nums[i] , nums[j]};
+
+        // collect unique numbers
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i = 0; i <= 100; i++){
+            if(freq[i] > 0){
+                list.add(i);
+            }
+        }
+
+        // compare only unique elements
+        for(int i = 0; i < list.size(); i++){
+            for(int j = i + 1; j < list.size(); j++){
+                int a = list.get(i);
+                int b = list.get(j);
+
+                if(freq[a] != freq[b]){
+                    return new int[]{a, b};
                 }
             }
         }
-        return new int[]{-1,-1};
+
+        return new int[]{-1, -1};
     }
 }
