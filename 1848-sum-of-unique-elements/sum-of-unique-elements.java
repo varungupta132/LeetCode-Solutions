@@ -1,17 +1,16 @@
 class Solution {
     public int sumOfUnique(int[] nums) {
-        int sumy = 0;
-        int freq[] = new int[101];
+        int s = 0;
+        HashMap<Integer , Integer> hm = new HashMap<>();
+        for(int i : nums){
+            hm.put(i , hm.getOrDefault(i , 0) + 1);
+        }
 
         for(int i : nums){
-            freq[i]++;
-        }
-
-        for(int i = 0; i <= 100; i++){
-            if(freq[i] == 1){
-                sumy += i;
+            if(hm.get(i) == 1){
+                s+= i;
             }
         }
-        return sumy;
+        return s;
     }
 }
