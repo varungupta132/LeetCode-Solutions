@@ -25,14 +25,19 @@ class Solution {
         for (int i = size - 2; i >= 0; i--) {
             suf[i] = (suf[i + 1] * arr[i + 1]) % 12345;
         }
+        int[] res = new int[size];
+        for (int i = 0; i < size; i++) {
+            res[i] = (pref[i] * suf[i]) % 12345;
+        }
 
         // Step 4: build answer
         int[][] ans = new int[n][m];
-        for (int i = 0; i < size; i++) {
-            int val = (pref[i] * suf[i]) % 12345;
-            ans[i / m][i % m] = val;
+        int x = 0;
+        for (int i = 0; i < n; i++) {
+            for(int j = 0 ; j < m; j++){
+                ans[i][j] = res [x++];
+            }
         }
-
         return ans;
     }
 }
