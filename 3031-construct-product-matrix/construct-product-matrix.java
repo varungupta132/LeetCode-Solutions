@@ -1,43 +1,40 @@
 class Solution {
     public int[][] constructProductMatrix(int[][] grid) {
-        int n = grid.length, m = grid[0].length;
-        int size = n * m;
-
-        // Step 1: flatten (with mod to avoid overflow)
-        int[] arr = new int[size];
-        int k = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                arr[k++] = grid[i][j] % 12345;
+        int[] arr = new int[grid.length * grid[0].length];
+        int idx = 0;
+        for(int[] i : grid){
+            for(int j : i){
+                arr[idx++] = j%12345;
             }
         }
-
-        // Step 2: prefix
-        int[] pref = new int[size];
+        int[] pref = new int[grid.length * grid[0].length];
+        int[] sufx = new int[grid.length * grid[0].length];
         pref[0] = 1;
-        for (int i = 1; i < size; i++) {
-            pref[i] = (pref[i - 1] * arr[i - 1]) % 12345;
-        }
+        sufx[sufx.length -1]=1;
 
-        // Step 3: suffix
-        int[] suf = new int[size];
-        suf[size - 1] = 1;
-        for (int i = size - 2; i >= 0; i--) {
-            suf[i] = (suf[i + 1] * arr[i + 1]) % 12345;
+        for(int i = 1 ; i < pref.length ; i++){
+            pref[i] = (pref[i-1]*arr[i-1])%12345;
         }
-        int[] res = new int[size];
-        for (int i = 0; i < size; i++) {
-            res[i] = (pref[i] * suf[i]) % 12345;
+        for(int i = sufx.length-2 ; i >= 0 ; i--){
+            sufx[i] = (sufx[i+1] * arr[i+1])%12345;
         }
-
-        // Step 4: build answer
-        int[][] ans = new int[n][m];
-        int x = 0;
-        for (int i = 0; i < n; i++) {
-            for(int j = 0 ; j < m; j++){
-                ans[i][j] = res [x++];
+        for(int i = 0 ; i < pref.length ; i++){
+            arr[i] = (pref[i] * sufx[i])%12345;
+        }
+        int xyz = 0;
+        int[][] ans =  new int[grid.length][grid[0].length];
+        for(int i = 0 ; i < grid.length ; i++){
+            for(int j = 0 ; j < grid[0].length ; j++){
+                ans[i][j] = arr[xyz++];
             }
         }
         return ans;
+
+
+        
+        
+
+
+
     }
 }
