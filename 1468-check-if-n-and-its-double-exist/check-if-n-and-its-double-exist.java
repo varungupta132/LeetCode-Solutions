@@ -8,7 +8,7 @@ class Solution {
         } 
         for(int i : hs){
             if(i== 0 &&  z > 1) return true;
-            else if(i !=0 && hs.contains(i*2)) return true;
+            if(i !=0 && hs.contains(i*2)) return true;
         }
         return false;
     }
