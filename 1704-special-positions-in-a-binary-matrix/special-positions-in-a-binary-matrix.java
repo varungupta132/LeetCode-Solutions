@@ -1,26 +1,32 @@
 class Solution {
     public int numSpecial(int[][] mat) {
-        int c = 0;
-        for(int i = 0 ; i < mat.length ; i++){
-            for(int j  = 0 ; j < mat[0].length ; j++){
+        int n = mat.length;
+        int m = mat[0].length;
+
+        int[] row = new int[n];
+        int[] col = new int[m];
+
+        // Step 1: count 1s
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
                 if(mat[i][j] == 1){
-                    boolean danger = false;
-                    for(int k = 0 ; k < mat[0].length ; k++){
-                        if(k != j && mat[i][k] == 1) {
-                            danger = true;
-                        break;
-                        }
-                    }
-                    for(int k = 0 ; k < mat.length ; k++){
-                        if(k != i && mat[k][j] == 1){
-                            danger = true;
-                        break;
-                        } 
-                    }
-                    if(!danger) c++;
+                    row[i]++;
+                    col[j]++;
                 }
             }
         }
-            return c;
+
+        // Step 2: check special
+        int count = 0;
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(mat[i][j] == 1 && row[i] == 1 && col[j] == 1){
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 }
