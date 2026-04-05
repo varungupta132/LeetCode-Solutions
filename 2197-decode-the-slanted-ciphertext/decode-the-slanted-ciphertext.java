@@ -1,20 +1,26 @@
 class Solution {
     public String decodeCiphertext(String en, int rows) {
-        int c = en.length() / rows;
-        StringBuilder sb = new StringBuilder();
+        if(rows == 0) return "";
         
-        for (int start = 0; start < c; start++) {
-            int idx = start;
+        int n = en.length();
+        int cols = n / rows;
 
-            while (idx < en.length()) {
-                sb.append(en.charAt(idx));
-                idx = idx + c + 1;
+        StringBuilder sb = new StringBuilder();
 
-                // ❗ stop if next jump goes to invalid diagonal
-                if (idx % c == 0) break;
+        // Traverse from each column of first row
+        for(int startCol = 0; startCol < cols; startCol++) {
+            int i = 0;
+            int j = startCol;
+
+            // diagonal traversal
+            while(i < rows && j < cols) {
+                sb.append(en.charAt(i * cols + j));
+                i++;
+                j++;
             }
         }
 
+        // remove trailing spaces
         return sb.toString().replaceAll("\\s+$", "");
     }
 }
