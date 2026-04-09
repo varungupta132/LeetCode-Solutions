@@ -1,7 +1,7 @@
 class Solution {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
-        int[][] ans = new int[r][c];
         if(r*c !=  mat.length * mat[0].length) return mat;
+        int[][] ans = new int[r][c];
         
         int ridx = 0;
         int cidx = 0 ;
