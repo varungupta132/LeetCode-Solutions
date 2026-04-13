@@ -11,22 +11,21 @@ class Solution {
                 if (!stk.isEmpty()) {
                     stk.pop();
                 } else {
-                    sb.setCharAt(i, '*');
+                    sb.setCharAt(i , '*');
                 }
             }
         }
-        
-        while (!stk.isEmpty()) {
-            sb.setCharAt(stk.pop(), '*');
+        StringBuilder ans = new StringBuilder();
+        while(!stk.isEmpty()){
+            sb.setCharAt(stk.pop() , '*');
         }
-        
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < sb.length(); i++) {
-            if (sb.charAt(i) != '*') {
-                result.append(sb.charAt(i));
+
+        for(int i = 0 ; i < sb.length() ; i++){
+            if(sb.charAt(i) != '*'  ){
+                ans.append(sb.charAt(i));
             }
         }
-        
-        return result.toString();
+
+        return ans.toString();
     }
 }
