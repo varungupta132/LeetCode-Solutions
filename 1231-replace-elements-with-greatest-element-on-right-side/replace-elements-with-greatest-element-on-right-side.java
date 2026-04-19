@@ -1,24 +1,15 @@
 class Solution {
     public int[] replaceElements(int[] arr) {
-        int[] ans = new int[arr.length];
-        for(int ii = 0 ; ii < arr.length ; ii++){
-            int z = -1;
-            int e = arr.length-1;
-            for(int i = ii+1 ; i <= e ; i++){
-                int num = arr[i];
-                z = Math.max( z , num );
-            }
-        ans[ii] = z;
-    }
+        int n = arr.length;
+        int[] ans = new int[n];
+
+        int maxRight = -1;
+
+        for (int i = n - 1; i >= 0; i--) {
+            ans[i] = maxRight;
+            maxRight = Math.max(maxRight, arr[i]);
+        }
+
         return ans;
     }
-
-    // public void helper(int[] ans,int[] arr , int ii , int e){
-    //     int z = -1;
-    //     for(int i = ii ; i <= e ; i++){
-    //         int num = arr[i];
-    //         z = Math.max( z , num );
-    //     }
-    //     ans[ii-1] = z;
-    // }
 }
