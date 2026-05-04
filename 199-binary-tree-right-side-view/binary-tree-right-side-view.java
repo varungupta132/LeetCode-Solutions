@@ -4,35 +4,24 @@ class Solution {
 
         List<Integer> arr = new ArrayList<>();
 
-        if(root == null) return arr;
-
-        Queue<TreeNode> q = new LinkedList<>();
-
-        q.offer(root);
-
-        while(!q.isEmpty()){
-
-            int n = q.size();
-
-            for(int i = 0 ; i < n ; i++){
-
-                TreeNode curr = q.poll();
-
-                if(curr.left != null){
-                    q.offer(curr.left);
-                }
-
-                if(curr.right != null){
-                    q.offer(curr.right);
-                }
-
-                // last node of level
-                if(i == n - 1){
-                    arr.add(curr.val);
-                }
-            }
-        }
+        addr(arr, root, 0);
 
         return arr;
+    }
+
+    public void addr(List<Integer> arr, TreeNode root, int level){
+
+        if(root == null) return;
+
+        // first node of this level
+        if(level == arr.size()){
+            arr.add(root.val);
+        }
+
+        // right first
+        addr(arr, root.right, level + 1);
+
+        // then left
+        addr(arr, root.left, level + 1);
     }
 }
