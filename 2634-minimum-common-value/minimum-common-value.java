@@ -4,7 +4,7 @@ class Solution {
         for(int x : nums1){
             hs.add(x);
         }
-        // Arrays.sort(nums2);
+        Arrays.sort(nums2);
         for(int i : nums2){
             if(hs.contains(i)){
                 return i;
