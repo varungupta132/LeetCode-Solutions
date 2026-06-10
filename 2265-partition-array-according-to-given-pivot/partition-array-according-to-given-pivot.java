@@ -1,11 +1,9 @@
 class Solution {
     public int[] pivotArray(int[] nums, int pivot) {
         int n = nums.length;
-
         List<Integer> less = new ArrayList<>();
         List<Integer> equal = new ArrayList<>();
         List<Integer> greater = new ArrayList<>();
-
         for (int num : nums) {
             if (num < pivot) {
                 less.add(num);
