@@ -10,9 +10,9 @@ class Solution {
                 curr = curr * nums[j];
             maxi = Math.max(maxi , curr);
             }
-                        maxi = Math.max(maxi , curr);
+                        // maxi = Math.max(maxi , curr);
 
-                System.out.println("Maxi -->" + maxi);
+                // System.out.println("Maxi -->" + maxi);
 
         }
         return maxi;
