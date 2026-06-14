@@ -24,8 +24,7 @@ public boolean check(int mid, int[] piles, int h) {
     long hours = 0;
 
     for (int bananas : piles) {
-        hours += (bananas + mid - 1) / mid;
-
+        hours += (int)Math.ceil((double)bananas / mid);
         if (hours > h) {
             return false;
         }
