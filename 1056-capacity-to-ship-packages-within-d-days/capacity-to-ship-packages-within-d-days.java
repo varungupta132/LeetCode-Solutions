@@ -1,14 +1,14 @@
 class Solution {
     public int shipWithinDays(int[] we, int da) {
-        int l = 0 ;
-        int r = 0;
-        for(int i : we ){
-            l = Math.max(l , i);
-            r += i;
-        }
+        int l = 1 ;
+        int r = 25000000;
+        // for(int i : we ){
+        //     l = Math.max(l , i);
+        //     r += i;
+        // }
         while( l<= r){
             int mid = l + (r-l)/2 ;
-            System.out.println(mid);
+            // System.out.println(mid);
             if(check(we , da , mid)){
                 r = mid -1;
             }
@@ -23,6 +23,8 @@ class Solution {
         int c = 0 ;
         int d = 1;
         for(int i = 0 ; i < we.length ; i++){
+                        if (we[i] > mid) return false;   // <-- add this line
+
             if( c + we[i] <= mid){
                 c+=we[i];
             }else{
