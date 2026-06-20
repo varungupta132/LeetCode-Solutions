@@ -7,6 +7,7 @@ class Solution {
                 if(s == goal){
                     c++;
                 }
+                if(s > goal) break;
                 if(j < nums.length)
                 s+=nums[j];
             }
