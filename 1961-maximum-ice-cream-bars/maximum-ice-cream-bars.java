@@ -9,6 +9,7 @@ class Solution {
             x++; 
             // System.out.println("ohhhh yes ");
             }
+            if(coins < i) break;
         }
         return x;
     }
