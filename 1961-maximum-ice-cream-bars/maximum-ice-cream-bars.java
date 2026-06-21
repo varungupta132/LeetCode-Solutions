@@ -7,7 +7,7 @@ class Solution {
             if(coins >=i){
             coins -= i;
             x++; 
-            System.out.println("ohhhh yes ");
+            // System.out.println("ohhhh yes ");
             }
         }
         return x;
