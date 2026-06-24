@@ -20,9 +20,9 @@ class Solution {
                 ud++;
             }
         }
-        System.out.println(ud + " " + rl + " " + und);
+        // System.out.println(ud + " " + rl + " " + und);
 
-        int dis = Math.max(  Math.abs(0-rl) + Math.abs(0-ud) +und    ,     Math.abs(0-ud)+und        );
-        return dis;
+        // int dis = Math.max(  Math.abs(0-rl) + Math.abs(0-ud) +und    ,     Math.abs(0-ud)+und        );
+        return Math.abs(0-rl) + Math.abs(0-ud) +und;
     }
 }
