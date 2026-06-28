@@ -1,11 +1,14 @@
 class Solution {
     public int countKDifference(int[] nums, int k) {
-        int cnt = 0;
+        int cnt = 0 ;
+        Arrays.sort(nums);
         for(int i = 0 ; i < nums.length ; i++){
-            int ele = nums[i];
-            for(int j = i ; j < nums.length ;j++){
-                if(Math.abs(ele - nums[j]) == k){
+            for(int j = i + 1 ; j < nums.length ; j++){
+                if(Math.abs(nums[i] - nums[j]) == k ){
                     cnt++;
+                }
+                else if(Math.abs(        nums[i] - nums[j]       )      >  k            )  {
+                break;
                 }
             }
         }
