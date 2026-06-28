@@ -8,23 +8,23 @@ class Solution {
         }
         for (int size = 1; size <= n; size++) {
 
-    if (freq[size] == 0) continue;
+            if (freq[size] == 0) continue;
 
-    ArrayList<Integer> temp = new ArrayList<>();
+            ArrayList<Integer> temp = new ArrayList<>();
 
-    for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; i++) {
 
-        if (gs[i] == size) {
+                if (gs[i] == size) {
 
-            temp.add(i);
+                    temp.add(i);
 
-            if (temp.size() == size) {
-                arr.add(new ArrayList<>(temp));
-                temp.clear();
+                    if (temp.size() == size) {
+                        arr.add(new ArrayList<>(temp));
+                        temp.clear();
+                    }
+                }
             }
         }
-    }
-}
 
 
 
