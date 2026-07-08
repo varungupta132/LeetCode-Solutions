@@ -11,6 +11,10 @@ class Solution {
             }
         }
         System.out.println(sum + " ---------> " + sb);
-        return sum * Integer.parseInt(sb.toString());
+        long nn = 0 ;
+        for(int i = 0 ;  i < sb.length() ; i++){
+            nn = nn*10 + sb.charAt(i)-'0' ;
+        }
+        return (sum * nn);
     }
 }
