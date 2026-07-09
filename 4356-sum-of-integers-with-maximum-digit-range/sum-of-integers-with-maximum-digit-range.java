@@ -1,40 +1,31 @@
 class Solution {
     public int maxDigitRange(int[] nums) {
         int dd = 0;
-        int sum = 0 ;
-        int[] copy = nums.clone();
-        int[] copy2 = nums.clone();
-        for(int i : nums){
+        int sum = 0;
+
+        for (int num : nums) {
+            int i = num;
             int s = Integer.MAX_VALUE;
             int l = Integer.MIN_VALUE;
-            while(i > 0){
-                int x = i%10;
-                i = i / 10;
 
-                s = Math.min(s , x);
-                l = Math.max(l , x);
-                dd = Math.max(dd , l-s);
+            while (i > 0) {
+                int x = i % 10;
+                i /= 10;
+
+                s = Math.min(s, x);
+                l = Math.max(l, x);
+            }
+
+            int range = l - s;
+
+            if (range > dd) {
+                dd = range;
+                sum = num;
+            } else if (range == dd) {
+                sum += num;
             }
         }
-        int idx = 0;
-        for(int i : copy){
-            int s = Integer.MAX_VALUE;
-            int l = Integer.MIN_VALUE;
-            
-            while(i > 0){
-                int x = i%10;
-                i = i / 10;
 
-                s = Math.min(s , x);
-                l = Math.max(l , x);
-            }
-                if(l-s == dd){
-                    sum+= copy2[idx];
-                    System.out.println(copy2[idx]);
-                    // break;
-                }
-            idx++;
-        }
         return sum;
     }
 }
