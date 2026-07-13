@@ -1,6 +1,7 @@
 class Solution {
     public int findMinDifference(List<String> timePoints) {
-
+        if(timePoints.size()>1440)
+    return 0;
         ArrayList<Integer> secondsList = new ArrayList<>();
 
         for (String time : timePoints) {
