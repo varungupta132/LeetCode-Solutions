@@ -14,26 +14,15 @@ class Solution {
                 continue;
             }
 
-            int n = i - x;
-
-            if (k > n) {
-                k -= n;
-
+                int n = i - x;
+                int t=Math.min(k,n);
                 long first = x;
-                long last = (long) i - 1;
+                long last = (long) x + t - 1;
 
-                ans += (long) n * (first + last) / 2;
-
-                x = i + 1;
-            } else {
-                long first = x;
-                long last = (long) x + k - 1;
-
-                ans += (long) k * (first + last) / 2;
-
-                k = 0;
-                break;
-            }
+                ans += (long) t * (first + last) / 2;
+                x=i+1;
+                k = k-t;
+                if(k==0)break;
         }
 
         if (k > 0) {
