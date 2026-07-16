@@ -11,11 +11,13 @@ class Solution {
             else{
                 pre[i] = gcd(nums[i] , maxi);
             }
+        // Arrays.sort(pre);
             // maxi = Math.max(maxi nums[i]);
             // pre[i] = Math.max(nums[i] , maxi);
         }
+                Arrays.sort(pre);
+
         // System.out.println(Arrays.toString(pre));
-        Arrays.sort(pre);
         long ans = 0;
         int l = 0 ; 
         int r = nums.length-1 ;
