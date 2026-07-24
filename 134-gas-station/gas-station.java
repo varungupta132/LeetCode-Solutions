@@ -1,28 +1,26 @@
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        int sum  = 0 ;
-        for(int i : gas){
-            sum+= i;
+        int sum = 0;
+        for(int i = 0 ; i < cost.length; i++){
+            sum += cost[i];
+            sum -= gas[i];
         }
-        for(int i : cost){
-            sum -= i;
-        }
-        if(sum <0) return -1;
-        int ming = Integer.MIN_VALUE;
-        int minc = Integer.MAX_VALUE;
-        int ans = -1;
-        int cf = 0 ;
-        int st = 0;
+        if(sum > 0) return -1;
 
-        for(int  i = 0 ; i < gas.length ; i++){
-            // if(gas[i] > cost[i]) return i
-            cf += gas[i] - cost[i];
-            if(cf <0) {
-            st = i+1;
-            cf = 0;
+        int start = 0;
+        int rem = 0;
+        int tt = 0;
+        for(int i = 0 ; i < gas.length ; i++){
+            int diff = gas[i] - cost[i];
+            tt+= diff;
+            rem += diff;
+            if(rem < 0){
+                start = i +1;
+                rem = 0;
             }
-
         }
-        return st;
+
+        return tt>=0?start:-1;
+
     }
 }
