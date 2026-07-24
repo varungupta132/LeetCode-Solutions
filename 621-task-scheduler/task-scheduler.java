@@ -7,20 +7,18 @@ class Solution {
             freq[ch - 'A']++;
         }
 
-        int maxFreq = 0;
-        for (int f : freq) {
-            maxFreq = Math.max(maxFreq, f);
+        Arrays.sort(freq);
+
+        int gadhdhe = freq[25] - 1;
+        int empty = gadhdhe * n;
+
+        for (int i = 24; i >= 0; i--) {
+            empty -= Math.min(freq[i], gadhdhe);
         }
 
-        int maxCount = 0;
-        for (int f : freq) {
-            if (f == maxFreq) {
-                maxCount++;
-            }
-        }
+        if (empty < 0)
+            empty = 0;
 
-        int ans = (maxFreq - 1) * (n + 1) + maxCount;
-
-        return Math.max(ans, tasks.length);
+        return tasks.length + empty;
     }
 }
