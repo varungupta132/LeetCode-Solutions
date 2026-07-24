@@ -7,8 +7,8 @@ class Solution {
         int end = intervals[0][1];
         int c = 0;
         for(int i = 1 ;i < intervals.length ;i++){
-            int te = intervals[i][0];
-            if(end > te){
+            // int te = intervals[i][0];
+            if(end > intervals[i][0]){
                 c++;
             }
             else{
