@@ -1,7 +1,11 @@
 class Solution {
     public int longestPalindromeSubseq(String s) {
         StringBuilder sb = new StringBuilder(s);
-        return longestCommonSubsequence(s , sb.reverse().toString());
+        int[][] dp  = new int[s.length()+1][s.length()+1];
+        for(int[] x : dp){
+            Arrays.fill(x , -1);
+        }
+        return solve( s , sb.reverse().toString() , 1 , 1  , dp);
    }
     public int longestCommonSubsequence(String t1, String t2) {
         int[][] dp  = new int[t1.length()+1][t2.length()+1];
