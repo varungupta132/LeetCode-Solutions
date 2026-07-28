@@ -1,27 +1,27 @@
 class Solution {
-
     public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> hs = new HashSet<>(wordDict);
+        Boolean[] dp = new Boolean[s.length()];
+        return solve(hs, dp, s, 0);
+    }
 
-        HashSet<String> set = new HashSet<>(wordDict);
+    boolean solve(HashSet<String> hs, Boolean[] dp, String str, int idx) {
 
-        int n = s.length();
+        if (idx == str.length())
+            return true;
 
-        boolean[] dp = new boolean[n + 1];
+        if (dp[idx] != null)
+            return dp[idx];
 
-        dp[0] = true;
+        for (int i = idx; i < str.length(); i++) {
 
-        for (int i = 1; i <= n; i++) {
+            if (hs.contains(str.substring(idx, i + 1)) &&
+                solve(hs, dp, str, i + 1)) {
 
-            for (int j = 0; j < i; j++) {
-
-                if (dp[j] && set.contains(s.substring(j, i))) {
-                    dp[i] = true;
-                    break;
-                }
-
+                return dp[idx] = true;
             }
         }
 
-        return dp[n];
+        return dp[idx] = false;
     }
 }
