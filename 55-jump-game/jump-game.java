@@ -10,7 +10,7 @@ class Solution {
             if(maxi >= nums.length-1){
                 return true;
             }
-            if(maxi == 0) return false;
+            // if(maxi == 0) return false;
             i++;
         }
         return false;
