@@ -3,8 +3,9 @@ class Solution {
         int x = nums[0].length();
         int n = nums.length ;
         int idx = 0;
+        int xx = nums.length+1 ;
         List<String> list = Arrays.asList(nums);
-        while(true){
+        while(xx > 0){
             // String str = Integer.toBinaryString(idx++);
             String binary = Integer.toBinaryString(idx++);
             StringBuilder sb = new StringBuilder();
@@ -20,11 +21,14 @@ class Solution {
         if(!list.contains(str)){
             return str ;
         }
+        xx--;
 
             // boolean flag = true;
 
 
         }
+
+        return "";
 
     }
 }
