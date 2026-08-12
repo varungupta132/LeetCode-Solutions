@@ -1,12 +1,19 @@
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] == target - nums[i]) {
-                    return new int[] { i, j };
-                }
-            }  
+    public int[] twoSum(int[] nums, int t) {
+        HashMap<Integer , Integer> hm = new HashMap<>();
+
+        for(int i = 0 ; i < nums.length ; i++){
+            hm.put(nums[i] , i);
         }
-        return new int[] {};
+
+        for(int i = 0 ; i < nums.length ; i++){
+            int rest =  t - nums[i];
+            if(   hm.getOrDefault(rest , -1)   != -1  && hm.getOrDefault(rest , -1) != i ){
+                int v = hm.get(rest);
+                return new int[]{i , v};
+            }
+        }
+
+        return new int[]{-1 , -1};
     }
 }
