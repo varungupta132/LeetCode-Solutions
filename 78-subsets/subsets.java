@@ -1,32 +1,38 @@
 import java.util.*;
 
 class Solution {
-    List<List<Integer>> lst ;
+    List<List<Integer>> lst;
+
     public List<List<Integer>> subsets(int[] nums) {
         lst = new ArrayList<>();
-        List<Integer> x = new ArrayList<>();
+        List<Integer> currentSubset = new ArrayList<>();
         
-        lst.add(new ArrayList<>()); // Empty subset ko pehle hi add kiya
-        bt(nums , x , 0);
+        // Index 0 se shuru karte hain
+        findSubsets(nums, 0, currentSubset);
         return lst;
     }
-    
-    public void bt(int[] num , List<Integer> x , int idx){
-        // Loop ke andar backtracking pattern: base case ki alag se zaroorat nahi padti
-        // Kyunki loop condition (i < num.length) apne aap bound check kar leti hai
-        for(int i = idx ; i < num.length ; i++){
-            
-            // Step 1: Element ko add karo
-            x.add(num[i]);
-            
-            // FIX 1: 'x' ka address daalne ke bajaye uski fresh COPY (new ArrayList) add karein
-            lst.add(new ArrayList<>(x));
-            
-            // Step 2: Agle elements ke liye recursion bhein (i + 1)
-            bt(num , x , i + 1);
-            
-            // FIX 2: Poore list ko 'clear()' karne ke bajaye sirf aakhiri added element ko remove karein
-            x.remove(x.size() - 1);
+
+    public void findSubsets(int[] nums, int idx, List<Integer> current) {
+        // Base Case: Jab hum saare elements check kar chuke hon
+        if (idx == nums.length) {
+            // Is time hamare paas ek complete combination hai, isko main list mein save kar lo
+            lst.add(new ArrayList<>(current));
+            return;
         }
+
+        // --- OPTION 1: NOT TAKE (Element ko chhod dein) ---
+        // Hum current element ko touch nahi karte, seedhe agle index par chale jaate hain
+        findSubsets(nums, idx + 1, current);
+
+
+        // --- OPTION 2: TAKE (Element ko shamil karein) ---
+        // Pehle element ko list mein add karo
+        current.add(nums[idx]);
+        
+        // Ab is added element ke sath agle index par jao
+        findSubsets(nums, idx + 1, current);
+        
+        // Waapas aate waqt element ko hata do (Safai/Clean up step)
+        current.remove(current.size() - 1);
     }
 }
