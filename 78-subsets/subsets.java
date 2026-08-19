@@ -1,33 +1,32 @@
 import java.util.*;
 
 class Solution {
-    List<List<Integer>> lst;
-
+    List<List<Integer>> lst ;
     public List<List<Integer>> subsets(int[] nums) {
         lst = new ArrayList<>();
         List<Integer> x = new ArrayList<>();
         
-        // Seedhe index 0 se helper function call karein
-        bt(nums, x, 0);
+        lst.add(new ArrayList<>()); // Empty subset ko pehle hi add kiya
+        bt(nums , x , 0);
         return lst;
     }
-
-    public void bt(int[] num, List<Integer> x, int idx) {
-        // Base Case: Jab saare elements check ho jayein
-        if (idx == num.length) {
-            // HAMESHA ek nayi copy banakar main list mein add karein
+    
+    public void bt(int[] num , List<Integer> x , int idx){
+        // Loop ke andar backtracking pattern: base case ki alag se zaroorat nahi padti
+        // Kyunki loop condition (i < num.length) apne aap bound check kar leti hai
+        for(int i = idx ; i < num.length ; i++){
+            
+            // Step 1: Element ko add karo
+            x.add(num[i]);
+            
+            // FIX 1: 'x' ka address daalne ke bajaye uski fresh COPY (new ArrayList) add karein
             lst.add(new ArrayList<>(x));
-            return;
+            
+            // Step 2: Agle elements ke liye recursion bhein (i + 1)
+            bt(num , x , i + 1);
+            
+            // FIX 2: Poore list ko 'clear()' karne ke bajaye sirf aakhiri added element ko remove karein
+            x.remove(x.size() - 1);
         }
-
-        // Choice 1: Current element ko subset mein SHAMIL KAREIN (Take)
-        x.add(num[idx]);
-        bt(num, x, idx + 1);
-
-        // Backtracking Step: Agli choice ke liye element ko remove karein
-        x.remove(x.size() - 1);
-
-        // Choice 2: Current element ko CHHOD DEIN (Leave/Skip)
-        bt(num, x, idx + 1);
     }
 }
