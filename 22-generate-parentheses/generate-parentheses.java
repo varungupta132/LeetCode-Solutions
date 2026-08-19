@@ -1,17 +1,28 @@
 class Solution {
+    List<String> lst;
     public List<String> generateParenthesis(int n) {
-        List<String> lst = new ArrayList<>();
-        addp(lst , "" , 0 , 0 , n);
-        return lst;
+        lst = new ArrayList<>();
+        bt(n , "(" , 1 , 0); 
+        return lst;      
     }
-
-    public void addp(List<String> lst , String curr , int o , int c , int n){
-        if(curr.length() == n*2){
-        lst.add(curr);
-        return;
+    public void bt(int n , String str , int o , int c){
+        if( o > n || c > n) return;
+        if( o  == n && c == n){
+            lst.add(str);
+            return;
         }
-        if(o < n) addp(lst , curr + "(" , o+1 , c , n);
-        if(c < o) addp(lst , curr + ")" , o , c+1 , n);
-        
+        // bt(n , str + ")" , );
+        if(o == c){
+            bt(n , str + "(" , o+1 , c);
+        }
+        if(o > c){
+            bt(n , str + ")" , o , c+1);
+            bt(n , str + "(" , o+1 , c);
+
+        }
+
+
+
+
     }
 }
