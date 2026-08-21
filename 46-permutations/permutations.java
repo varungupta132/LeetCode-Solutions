@@ -1,43 +1,26 @@
 class Solution {
-
+    List<List<Integer>> lst;
     public List<List<Integer>> permute(int[] nums) {
-
-        List<List<Integer>> ans = new ArrayList<>();
-
-        backtrack(nums, 0, ans);
-
-        return new ArrayList<>(new HashSet<>(ans));
+        lst = new ArrayList<>();
+        // lst.add(new ArrayList<Integer>());
+        List<Integer> arr = new ArrayList<>();
+        boolean[] u = new boolean[nums.length];
+        bt(nums , arr , u);
+        return lst;
     }
-
-    public void backtrack(int[] nums, int idx, List<List<Integer>> ans) {
-
-        if (idx == nums.length) {
-
-            List<Integer> x = new ArrayList<>();
-
-            for (int num : nums) {
-                x.add(num);
-            }
-
-            ans.add(x);
-
-            return;
+    public void bt(int[] nums , List<Integer> arr , boolean[] u){
+        if(arr.size() == nums.length){
+            lst.add(new ArrayList<Integer>(arr));
+            return ;
         }
-
-        for (int i = idx; i < nums.length; i++) {
-
-            // swap
-            int temp = nums[idx];
-            nums[idx] = nums[i];
-            nums[i] = temp;
-
-            // recursively continue swapping
-            backtrack(nums, idx + 1, ans);
-
-            // undo swap
-            temp = nums[idx];
-            nums[idx] = nums[i];
-            nums[i] = temp;
+        for(int i = 0 ; i < nums.length ; i++){
+            if(!u[i]){
+                arr.add(nums[i]);
+                u[i] = true;
+                bt(nums , arr , u);
+                arr.remove(arr.size() -1);
+                u[i] = false;
+            }
         }
     }
 }
