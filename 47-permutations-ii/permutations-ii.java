@@ -1,6 +1,7 @@
 class Solution {
     List<List<Integer>> ans;
     public List<List<Integer>> permuteUnique(int[] nums) {
+        Arrays.sort(nums);
         ans = new ArrayList<>(); 
         boolean[] used = new boolean[nums.length];
         backtrack(nums, new ArrayList<>(), used);
