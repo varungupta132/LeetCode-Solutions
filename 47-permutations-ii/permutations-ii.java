@@ -5,8 +5,8 @@ class Solution {
         ans = new ArrayList<>(); 
         boolean[] used = new boolean[nums.length];
         backtrack(nums, new ArrayList<>(), used);
-        Set<List<Integer>> set = new HashSet<>(ans);
-        ans = new ArrayList<>(set);
+        // Set<List<Integer>> set = new HashSet<>(ans);
+        // ans = new ArrayList<>(set);
         return ans;
     }
 
