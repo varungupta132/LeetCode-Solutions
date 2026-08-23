@@ -1,10 +1,10 @@
 class Solution {
     public int arrayPairSum(int[] nums) {
-        Arrays.sort(nums);
         int sum = 0 ;
-        for(int i = 0 ; i < nums.length ; i++){
-            sum += Math.min(nums[i],nums[i+1]);
-            i++;
+        Arrays.sort(nums);
+        for(int i = nums.length -2 ; i >= 0 ; i = i - 2){
+            System.out.println("value of i is -> " + i + " nums[i] ==> " + nums[i]);
+            sum += nums[i];
         }
         return sum;
     }
