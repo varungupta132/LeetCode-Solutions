@@ -6,7 +6,7 @@ class Solution {
         return lst ;
     }
     public void bt(int[] ca , int ta , int idx , ArrayList<Integer> arr ){
-        System.out.println("ta: " + ta + ", idx: " + idx + ", arr: " + arr);
+        // System.out.println("ta: " + ta + ", idx: " + idx + ", arr: " + arr);
         if(ta == 0){
             lst.add(new ArrayList<>(arr));
             return;
