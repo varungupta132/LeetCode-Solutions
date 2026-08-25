@@ -1,5 +1,16 @@
 class Solution {
-    public List<String> letterCombinations(String digits) {
+
+    List<String> ans;
+
+    public List<String> letterCombinations(String di) {
+
+        ans = new ArrayList<>();
+
+        if(di.length() == 0)
+            return ans;
+
+        ans.add("");
+
         String[] map = {
             "",     // 0
             "",     // 1
@@ -13,23 +24,37 @@ class Solution {
             "wxyz"  // 9
         };
 
-        List<String> lst = new ArrayList<>();
-        helpi(lst , map , "" , 0 , digits);
-        return lst;
+        ArrayList<String> x = new ArrayList<>();
+
+        for(char ch : di.toCharArray()) {
+            x.add(map[ch - '0']);
+        }
+
+        for(String ss : x) {
+            do_with(ans, ss);
+        }
+
+        return ans;
     }
 
-    public void helpi(List<String> lst , String[] map , String curr , int idx , String digits ){
-        if(digits.length() == curr.length()) {
-            lst.add(curr);
-            return;
+    public void do_with(List<String> ans, String ss) {
+
+        ArrayList<String> nn = new ArrayList<>();
+
+        for(char ch : ss.toCharArray()) {
+
+            String sss = ch + "";
+
+            for(String xxx : ans) {
+
+                nn.add(xxx + sss);
+            }
         }
 
-        String latters = map[digits.charAt(idx) - '0'];
+        ans.clear();
 
-        for(int i = 0 ; i < latters.length() ; i++){
-            char ch = latters.charAt(i);
-            helpi(lst, map , curr+ch , idx+1 , digits);
+        for(String str : nn) {
+            ans.add(str);
         }
-
     }
 }
