@@ -1,48 +1,80 @@
 class Solution {
-    public boolean exist(char[][] board, String word) {
 
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
+    public boolean exist(char[][] bo, String wo) {
 
-                if (board[i][j] == word.charAt(0)) {
-                    if (check(board, word, i, j, 0)) {
-                        return true;
-                    }
+        boolean[][] u = new boolean[bo.length][bo[0].length];
+
+        int m = bo.length;
+        int n = bo[0].length;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+
+                if (bo[i][j] == wo.charAt(0) && do_bhai(bo, wo, i, j, 0, m, n, u)) {
+                    return true;
                 }
             }
         }
 
         return false;
+
+        // return do_bhai(bo, wo, 0, 0, 0, m, n, u);
     }
 
-    public boolean check(char[][] board, String word,
-                         int i, int j, int idx) {
+    public boolean do_bhai(char[][] bo, String wo,
+                           int i, int j, int idx,
+                           int m, int n, boolean[][] u) {
 
-        // Entire word matched
-        if (idx == word.length()) {
-            return true;
+        // Boundary
+        if (i >= m || j >= n || i < 0 || j < 0) {
+            return false;
         }
-
-        // Out of bounds or character mismatch
-        if (i < 0 || i >= board.length ||
-            j < 0 || j >= board[0].length ||
-            board[i][j] != word.charAt(idx)) {
+        // Current cell already visited
+        if (u[i][j]) {
+            return false;
+        }
+        if (bo[i][j] != wo.charAt(idx)) {
             return false;
         }
 
-        // Mark current cell as visited
-        char temp = board[i][j];
-        board[i][j] = '#';
+        // Word complete
+        if (idx == wo.length()-1) {
+            return true;
+        }
 
-        boolean found =
-                check(board, word, i + 1, j, idx + 1) ||
-                check(board, word, i - 1, j, idx + 1) ||
-                check(board, word, i, j + 1, idx + 1) ||
-                check(board, word, i, j - 1, idx + 1);
+
+        // // Current character doesn't match
+        // if (bo[i][j] != wo.charAt(idx)) {
+        //     return false;
+        // }
+
+        // Mark current cell
+        u[i][j] = true;
+
+        boolean ans = false;
+
+        // Down
+        ans = ans || do_bhai(
+                bo, wo, i + 1, j, idx + 1, m, n, u
+        );
+
+        // Up
+        ans = ans || do_bhai(
+                bo, wo, i - 1, j, idx + 1, m, n, u
+        );
+
+        // Right
+        ans = ans || do_bhai(
+                bo, wo, i, j + 1, idx + 1, m, n, u
+        );
+
+        // Left
+        ans = ans || do_bhai(
+                bo, wo, i, j - 1, idx + 1, m, n, u
+        );
 
         // Backtrack
-        board[i][j] = temp;
+        u[i][j] = false;
 
-        return found;
+        return ans;
     }
 }
