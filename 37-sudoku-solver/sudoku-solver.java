@@ -2,7 +2,6 @@ class Solution {
     public void solveSudoku(char[][] bo) { 
         bt(bo, 0, 0); 
     } 
-
     public void bt(char[][] bo, int x, int y) { 
         
         if(filled(bo)) {
