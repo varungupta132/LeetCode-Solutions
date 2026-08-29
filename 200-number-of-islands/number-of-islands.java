@@ -26,7 +26,7 @@ class Solution {
             new int[]{i , j-1 }
         ));
         for(int[] x :  arrr ){
-            if( x[0] < 0 || x[0] > grid.length-1 || x[1] < 0 || x[1]  > grid[0].length -1 || grid[x[0]][x[1]] != '1' || u[x[0]][x[1]]) continue ;
+            // if( x[0] < 0 || x[0] > grid.length-1 || x[1] < 0 || x[1]  > grid[0].length -1 || grid[x[0]][x[1]] != '1' || u[x[0]][x[1]]) continue ;
 
             // System.out.println("Doing somting");
             dfs(grid , x[0], x[1]);
