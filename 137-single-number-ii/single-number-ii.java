@@ -1,16 +1,16 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        int[] ans = new int[2];
-        int idx = 0;
-        HashMap<Integer , Integer> hm = new HashMap<>();
+        HashMap<Integer , Integer> freq = new HashMap<>();
         for(int i : nums){
-            hm.put(i , hm.getOrDefault(i , 0) + 1);
+            freq.put(i , freq.getOrDefault(i , 0 ) + 1);
         }
-        for(Map.Entry<Integer , Integer> xyz : hm.entrySet()){
-            if(xyz.getValue() == 1){
-                return xyz.getKey();
-            }
+        for(int i : nums){
+            if(freq.get(i) == 1) return i;
         }
+        // for(int i = 0 ; i < 10 ; i++){
+        //     if(freq[i] = 1) return i;
+        // }
+
         return -1;
 
     }
