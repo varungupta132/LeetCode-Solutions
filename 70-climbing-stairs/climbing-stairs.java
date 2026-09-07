@@ -14,11 +14,11 @@ class Solution {
         return dp[n];
         // return climbStairs(n-1) + climbStairs(n-2);
     }
-    public int solve(int n , int[] dp){
-        if(dp[n] != 0){
-            return dp[n];
-        }
-        dp[n]=solve(n-1, dp) + solve(n-2 , dp);
-        return dp[n]; 
-    }
+    // public int solve(int n , int[] dp){
+    //     if(dp[n] != 0){
+    //         return dp[n];
+    //     }
+    //     dp[n]=solve(n-1, dp) + solve(n-2 , dp);
+    //     return dp[n]; 
+    // }
 }
