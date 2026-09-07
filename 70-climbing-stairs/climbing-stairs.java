@@ -5,7 +5,13 @@ class Solution {
         int[] dp = new int[n+1];
         dp[0] = 1;
         dp[1]= 1;
-        return solve(n , dp);
+        // return solve(n , dp);
+
+
+        for(int i = 2 ; i < dp.length ; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n];
         // return climbStairs(n-1) + climbStairs(n-2);
     }
     public int solve(int n , int[] dp){
