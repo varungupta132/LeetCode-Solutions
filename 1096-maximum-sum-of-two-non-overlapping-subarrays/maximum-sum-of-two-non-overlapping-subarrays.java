@@ -1,51 +1,40 @@
 class Solution {
     public int maxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {
+        ArrayList<Integer> fl = new ArrayList<>();
+        ArrayList<Integer> sl = new ArrayList<>();
 
-        int n = nums.length;
-        int max = 0;
-
-        // firstLen first, then secondLen
-        for (int i = 0; i + firstLen <= n; i++) {
-
-            int sum1 = 0;
-            for (int j = i; j < i + firstLen; j++) {
-                sum1 += nums[j];
-            }
-
-            // secondLen after firstLen
-            for (int j = i + firstLen; j + secondLen <= n; j++) {
-
-                int sum2 = 0;
-
-                for (int k = j; k < j + secondLen; k++) {
-                    sum2 += nums[k];
-                }
-
-                max = Math.max(max, sum1 + sum2);
-            }
+        for(int i = 0 ; i < nums.length ; i++){
+            int x = solve(nums , i , i+firstLen);
+            fl.add(x);
+            int y = solve(nums , i , i+secondLen);
+            sl.add(y);
         }
+        System.out.println(fl);
+        
+        System.out.println(sl);
 
-        // secondLen first, then firstLen
-        for (int i = 0; i + secondLen <= n; i++) {
-
-            int sum1 = 0;
-            for (int j = i; j < i + secondLen; j++) {
-                sum1 += nums[j];
-            }
-
-            // firstLen after secondLen
-            for (int j = i + secondLen; j + firstLen <= n; j++) {
-
-                int sum2 = 0;
-
-                for (int k = j; k < j + firstLen; k++) {
-                    sum2 += nums[k];
+        int max = 0 ;
+        for(int i = 0 ; i < nums.length ; i++){
+            for(int j = 0 ; j < nums.length ; j++){
+                if( j <= i-secondLen ||  j >= i + firstLen ){
+                    // System.out.println("value of iiii-->" + i + "j----->" + j);
+                    max = Math.max(max , 
+                    fl.get(i) +
+                    sl.get(j));
+                    // System.out.println("done ye wala");
                 }
-
-                max = Math.max(max, sum1 + sum2);
             }
         }
 
         return max;
+    }
+
+    public int solve(int[] nums , int s , int e ){
+        int sum = 0 ;
+        for(int i = s ; i < nums.length && i < e ; i++){
+            sum += nums[i];
+        }
+        return sum;
+
     }
 }
