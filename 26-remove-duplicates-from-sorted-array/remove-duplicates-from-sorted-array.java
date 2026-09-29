@@ -1,16 +1,21 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        if(nums.length == 0) return 0;
-
-        int k = 1; // first element always unique
-
-        for(int i = 1; i < nums.length; i++){
-            if(nums[i] != nums[i-1]){
-                nums[k] = nums[i];
-                k++;
+        int idx = 0;
+        int c = 0;
+        for(int i = 0 ; i < nums.length ;i++){
+            if( i == 0){
+                idx++;
+                c++;
+            }
+            else{
+                if(nums[i] != nums[i-1]){
+                    // int temp = nums[idx];
+                    c++;
+                    nums[idx] = nums[i];
+                    idx++;
+                }
             }
         }
-
-        return k;
+        return c;
     }
 }
