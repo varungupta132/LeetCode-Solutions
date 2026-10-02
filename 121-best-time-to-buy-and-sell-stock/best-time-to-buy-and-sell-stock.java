@@ -1,17 +1,17 @@
 class Solution {
-    public int maxProfit(int[] pr) {
-        int sum = Integer.MIN_VALUE;
-        int buy = pr[0];
-        int sell = pr[0];
-        for(int i : pr){
-            if(buy >= i){
-                buy = i;
-            }else{
-                sell = i;
-            sum = Math.max(sum , sell-buy);
+    public int maxProfit(int[] prices) {
+        int b = prices[0];
+        int profit = 0 ;
+        for(int i = 0 ; i < prices.length ; i++){
+            if(b > prices[i]){
+                b = prices[i];
             }
-            // System.out.println("buyyy->       " + buy + "    sell------->  " + sell + "  profit-->" + sum);
+            // System.out.println(b);
+            // else{
+                int prof = prices[i] - b ;
+                profit = Math.max(profit , prof);
+            // }
         }
-        return sum!=Integer.MIN_VALUE?sum : 0;
+        return profit;
     }
 }
