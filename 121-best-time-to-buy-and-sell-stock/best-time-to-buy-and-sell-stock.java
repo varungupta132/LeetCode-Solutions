@@ -7,10 +7,10 @@ class Solution {
                 b = prices[i];
             }
             // System.out.println(b);
-            // else{
+            else{
                 int prof = prices[i] - b ;
                 profit = Math.max(profit , prof);
-            // }
+            }
         }
         return profit;
     }
