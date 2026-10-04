@@ -5,7 +5,7 @@ class Solution {
 
         int[] dp = new int[amount + 1];
 
-        Arrays.fill(dp, amount + 1);
+        Arrays.fill(dp, Integer.MAX_VALUE-10);
 
         dp[0] = 0;
 
@@ -22,7 +22,7 @@ class Solution {
             }
         }
 
-        if (dp[amount] == amount + 1) {
+        if (dp[amount] == Integer.MAX_VALUE-10 ) {
             return -1;
         }
 
