@@ -1,12 +1,16 @@
 class Solution {
     public int findTargetSumWays(int[] nums, int target) {
-        return solve(nums , target , 0 );
+        return solve(nums, 0, 0, target);
     }
-    int solve(int[] nums , int t , int idx){
-        // if(t == 0) return 1;
-        // if(t < 0 ) return 0;
-        if(idx == nums.length) return (t == 0) ? 1 : 0;
 
-        return solve(nums , t - nums[idx] , idx + 1) + solve(nums , t + nums[idx] , idx + 1);  
+    public int solve(int[] nums, int i, int sum, int target) {
+        if (i == nums.length) {
+            return sum == target ? 1 : 0;
+        }
+
+        int plus = solve(nums, i + 1, sum + nums[i], target);
+        int minus = solve(nums, i + 1, sum - nums[i], target);
+
+        return plus + minus;
     }
 }
